@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Meu Portfólio</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <button class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Olá, eu sou Alessandri Castro</h1>
+            <p class="subtitle">Desenvolvedor Full Stack</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/alessandri-castro-788190282/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/AlessandriCastro" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="sobre">
+        <h2>Sobre Mim</h2>
+        <div class="sobre-content">
+            <p>Sou estudante de Engenharia de Software com foco em backend, desenvolvedor Full Stack, possuo conhecimento em Java, Python, C, HTML, CSS e JavaScript. Meu objetivo é ganhar experiência prática que o mercado proporciona. Possuo certificado na AWS Machine learning</p>
+        </div>
+    </section>
+
+    <section id="habilidades" class="habilidades">
+        <h2>Minhas Habilidades</h2>
+        <div class="skills-grid">
+            <div class="skill-card" data-progress="90">
+                <i class="fab fa-html5"></i>
+                <h3>HTML5</h3>
+            </div>
+            <div class="skill-card" data-progress="85">
+                <i class="fab fa-css3-alt"></i>
+                <h3>CSS3</h3>
+            </div>
+            <div class="skill-card" data-progress="80">
+                <i class="fab fa-js"></i>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card" data-progress="75">
+                <i class="fab fa-react"></i>
+                <h3>React</h3>
+            </div>
+            <div class="skill-card" data-progress="85">
+                <i class="fab fa-python"></i>
+                <h3>Python</h3>
+            </div>
+            <div class="skill-card" data-progress="80">
+                <i class="fab fa-java"></i>
+                <h3>Java</h3>
+            </div>
+            <div class="skill-card" data-progress="75">
+                <i class="fas fa-database"></i>
+                <h3>MySQL</h3>
+            </div>
+            <div class="skill-card" data-progress="70">
+                <i class="fab fa-node-js"></i>
+                <h3>Node.js</h3>
+            </div>
+            <div class="skill-card" data-progress="75">
+                <i class="fas fa-code"></i>
+                <h3>C</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="projetos">
+        <h2>Meus Projetos</h2>
+        <div class="filtro-botoes">
+            <button class="filtro-btn active" data-filter="todos">Todos</button>
+            <button class="filtro-btn" data-filter="java">Java</button>
+            <button class="filtro-btn" data-filter="web">Web</button>
+        </div>
+        <div class="projetos-grid">
+            <div class="projeto-card" data-category="java">
+                <img src="blog-uso-dos-elevadores-dicas-para-prolongar-sua-utilizacao-f7bcc132ae.jpg" alt="Projeto 1">
+                <h3>Central de Elevadores Inteligentes</h3>
+                <p>Descrição do projeto java</p>
+                <div class="projeto-links">
+                    <a href="https://github.com/AlessandriCastro/Elevador" target="_blank"><i class="fab fa-github"></i> Código</a>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+            <div class="projeto-card" data-category="web">
+                <img src="FotodaPousada.png" alt="Projeto 2">
+                <h3> Site Pousada Encantos</h3>
+                <p>Descrição do projeto Web</p>
+                <div class="projeto-links">
+                    <a href="#" target="_blank"><i class="fab fa-github"></i> Código</a>
+                    <a href="https://alessandricastro.github.io/Site-Pousada-Encantos/index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+            <div class="projeto-card" data-category="web">
+                <img src="Screenshot_1.png" alt="Projeto 3">
+                <h3>Formulário para Engenheiro de Software</h3>
+                <p>Descrição do projeto desktop</p>
+                <div class="projeto-links">
+                    <a href="https://github.com/AlessandriCastro/Formulario" target="_blank"><i class="fab fa-github"></i> Código</a>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contato">
+        <h2>Entre em Contato</h2>
+        <div class="contato-content">
+            <p>Estou sempre aberto a novas oportunidades e parcerias!</p>
+            <a href="mailto:seu-email@exemplo.com" class="btn-contato">Me envie um email</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Alessandri Oliveira Castro da Silva. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

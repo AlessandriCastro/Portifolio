@@ -198,11 +198,12 @@ section h2 {
 
 /* Seção Projetos */
 .projetos-grid {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
+    gap: 4rem;
+    max-width: 900px;
     margin: 0 auto;
+    justify-items: center;
 }
 
 .projeto-card {
@@ -211,6 +212,9 @@ section h2 {
     overflow: hidden;
     box-shadow: 0 4px 6px var(--shadow-color);
     transition: var(--transition);
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
 }
 
 .projeto-card:hover {

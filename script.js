@@ -47,42 +47,6 @@ const animateSkills = () => {
     skills.forEach(skill => observer.observe(skill));
 };
 
-// Filtro de projetos
-const filterProjects = () => {
-    const filterButtons = document.createElement('div');
-    filterButtons.className = 'filter-buttons';
-    filterButtons.innerHTML = `
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="web">Web</button>
-        <button class="filter-btn" data-filter="mobile">Mobile</button>
-        <button class="filter-btn" data-filter="desktop">Desktop</button>
-    `;
-
-    const projetosSection = document.querySelector('#projetos');
-    projetosSection.insertBefore(filterButtons, document.querySelector('.projetos-grid'));
-
-    const buttons = document.querySelectorAll('.filter-btn');
-    const projects = document.querySelectorAll('.projeto-card');
-
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            buttons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            const filter = button.getAttribute('data-filter');
-
-            projects.forEach(project => {
-                if (filter === 'all' || project.getAttribute('data-category') === filter) {
-                    project.style.display = 'block';
-                } else {
-                    project.style.display = 'none';
-                }
-            });
-        });
-    });
-};
-
 // Tema escuro/claro
 const themeToggle = document.querySelector('.theme-toggle');
 const body = document.body;
@@ -139,7 +103,6 @@ projectCards.forEach(card => {
 document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
     animateSkills();
-    filterProjects();
     animateSkillProgress();
 });
 
@@ -147,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', function() {
     const filtroBtns = document.querySelectorAll('.filtro-btn');
     const projetoCards = document.querySelectorAll('.projeto-card');
+    const projetosGrid = document.querySelector('.projetos-grid');
 
     filtroBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -156,6 +120,13 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.classList.add('active');
 
             const filterValue = btn.getAttribute('data-filter');
+
+            // Ajusta o espaçamento do grid baseado no filtro
+            if (filterValue === 'web') {
+                projetosGrid.style.gap = '0.2rem';
+            } else {
+                projetosGrid.style.gap = '2rem';
+            }
 
             projetoCards.forEach(card => {
                 if (filterValue === 'todos') {

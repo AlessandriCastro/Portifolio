@@ -141,4 +141,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+});
+
+// Menu hambúrguer
+const menuToggle = document.querySelector('.menu-toggle');
+const navList = document.querySelector('.nav-list');
+
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navList.classList.toggle('active');
+});
+
+// Fechar o menu ao clicar em um link
+document.querySelectorAll('.nav-list a').forEach(link => {
+    link.addEventListener('click', () => {
+        navList.classList.remove('active');
+        menuToggle.classList.remove('active');
+    });
 }); 

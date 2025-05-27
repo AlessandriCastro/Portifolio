@@ -67,7 +67,30 @@ body {
     position: relative;
 }
 
-.nav-menu ul {
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.active {
+    transform: rotate(90deg);
+}
+
+.menu-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.active i {
+    transform: rotate(180deg);
+}
+
+.nav-list {
     display: flex;
     justify-content: center;
     list-style: none;
@@ -75,7 +98,7 @@ body {
     margin: 0;
 }
 
-.nav-menu a {
+.nav-list a {
     color: var(--text-color);
     text-decoration: none;
     padding: 0.5rem 1rem;
@@ -83,7 +106,7 @@ body {
     transition: var(--transition);
 }
 
-.nav-menu a:hover {
+.nav-list a:hover {
     color: var(--primary-color);
 }
 
@@ -199,11 +222,11 @@ section h2 {
 /* Seção Projetos */
 .projetos-grid {
     display: flex;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    flex-wrap: wrap;
     gap: 4rem;
     max-width: 900px;
     margin: 0 auto;
-    justify-items: center;
+    justify-content: center;
 }
 
 .projeto-card {
@@ -372,22 +395,76 @@ footer {
     }
     
     .nav-menu {
-        flex-direction: column;
-        padding: 0.5rem;
+        justify-content: space-between;
     }
 
-    .nav-menu ul {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--header-bg);
         flex-direction: column;
         align-items: center;
-        padding: 0.5rem;
+        padding: 1rem 0;
+        box-shadow: 0 2px 10px var(--shadow-color);
+        transform: translateY(-10px);
+        opacity: 0;
+        transition: all 0.3s ease;
     }
 
-    .nav-menu li {
-        margin: 0.5rem 0;
+    .nav-list.active {
+        display: flex;
+        transform: translateY(0);
+        opacity: 1;
     }
+
+    .nav-list li {
+        margin: 0.5rem 0;
+        transform: translateX(-20px);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .nav-list.active li {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .nav-list li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-list li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-list li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-list li:nth-child(4) { transition-delay: 0.4s; }
+    .nav-list li:nth-child(5) { transition-delay: 0.5s; }
 
     .theme-toggle {
         position: static;
         margin: 0.5rem 0;
+    }
+
+    .projetos-grid {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .projeto-card {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .filtro-botoes {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .filtro-btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
     }
 }

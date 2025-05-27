@@ -158,4 +158,168 @@ document.querySelectorAll('.nav-list a').forEach(link => {
         navList.classList.remove('active');
         menuToggle.classList.remove('active');
     });
-}); 
+});
+
+// Cursor personalizado
+const cursor = document.querySelector('.cursor');
+const cursorFollower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    
+    // Adiciona um pequeno delay ao follower para criar um efeito de "arrasto"
+    setTimeout(() => {
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+    }, 100);
+});
+
+// Adiciona efeito hover em elementos interativos
+const interactiveElements = document.querySelectorAll('a, button, input, textarea');
+
+interactiveElements.forEach(element => {
+    element.addEventListener('mouseenter', () => {
+        cursor.classList.add('active');
+        cursorFollower.classList.add('active');
+    });
+
+    element.addEventListener('mouseleave', () => {
+        cursor.classList.remove('active');
+        cursorFollower.classList.remove('active');
+    });
+});
+
+// Esconde o cursor quando sair da janela
+document.addEventListener('mouseout', () => {
+    cursor.style.display = 'none';
+    cursorFollower.style.display = 'none';
+});
+
+document.addEventListener('mouseover', () => {
+    cursor.style.display = 'block';
+    cursorFollower.style.display = 'block';
+});
+
+// Sistema de partículas
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+// Configuração do canvas
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Classe Partícula
+class Particle {
+    constructor() {
+        this.reset();
+    }
+
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 2 - 1;
+        this.speedY = Math.random() * 2 - 1;
+        this.color = `rgba(37, 99, 235, ${Math.random() * 0.5 + 0.1})`;
+    }
+
+    update(mouseX, mouseY) {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Interação com o mouse
+        if (mouseX && mouseY) {
+            const dx = mouseX - this.x;
+            const dy = mouseY - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 100) {
+                const angle = Math.atan2(dy, dx);
+                const force = (100 - distance) / 100;
+                this.speedX -= Math.cos(angle) * force * 0.5;
+                this.speedY -= Math.sin(angle) * force * 0.5;
+            }
+        }
+
+        // Limites da tela
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+        // Velocidade máxima
+        const maxSpeed = 2;
+        const speed = Math.sqrt(this.speedX * this.speedX + this.speedY * this.speedY);
+        if (speed > maxSpeed) {
+            this.speedX = (this.speedX / speed) * maxSpeed;
+            this.speedY = (this.speedY / speed) * maxSpeed;
+        }
+    }
+
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Criar partículas
+const particles = [];
+const particleCount = 100;
+
+for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+}
+
+// Variáveis do mouse
+let mouseX = null;
+let mouseY = null;
+
+// Atualizar posição do mouse
+canvas.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+canvas.addEventListener('mouseleave', () => {
+    mouseX = null;
+    mouseY = null;
+});
+
+// Função de animação
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Atualizar e desenhar partículas
+    particles.forEach(particle => {
+        particle.update(mouseX, mouseY);
+        particle.draw();
+    });
+
+    // Desenhar conexões
+    particles.forEach((particle, i) => {
+        for (let j = i + 1; j < particles.length; j++) {
+            const dx = particle.x - particles[j].x;
+            const dy = particle.y - particles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(37, 99, 235, ${0.2 * (1 - distance / 100)})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(particle.x, particle.y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate(); 
